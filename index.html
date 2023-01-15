@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1/dist/tailwind.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@1.10.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Alpine cdn -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+
+    <div id="form" x-data="{ currentStep: 1 }" class="daisy-stepper">
+      <div class="daisy-stepper__steps">
+        <button
+          class="daisy-stepper__step"
+          :class="{ 'daisy-stepper__step--active': currentStep === 1 }"
+          @click="currentStep = 1"
+        >
+          Step 1
+        </button>
+        <button
+          class="daisy-stepper__step"
+          :class="{ 'daisy-stepper__step--active': currentStep === 2 }"
+          @click="currentStep = 2"
+        >
+          Step 2
+        </button>
+        <button
+          class="daisy-stepper__step"
+          :class="{ 'daisy-stepper__step--active': currentStep === 3 }"
+          @click="currentStep = 3"
+        >
+          Step 3
+        </button>
+      </div>
+
+      <div class="daisy-stepper__content">
+        <div x-show="currentStep === 1">
+          <!-- Step 1 Content -->
+          <div class="daisy-form__group">
+            <label for="email">Email</label>
+            <input
+              class="daisy-input"
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div class="daisy-form__group">
+            <label for="name">Name</label>
+            <input
+              class="daisy-input"
+              type="text"
+              id="name"
+              placeholder="Enter your name"
+            />
+          </div>
+          <div class="daisy-form__group">
+            <label for="phone">Phone</label>
+            <input
+              class="daisy-input"
+              type="tel"
+              id="phone"
+              placeholder="Enter your phone number"
+            />
+          </div>
+        </div>
+        <div x-show="currentStep === 2">
+          <!-- Step 2 Content -->
+          <div class="daisy-form__group">
+            <label for="city">City</label>
+            <input
+              class="daisy-input"
+              type="text"
+              id="city"
+              placeholder="Enter your city"
+            />
+          </div>
+          <div class="daisy-form__group">
+            <label for="address">Address</label>
+            <input
+              class="daisy-input"
+              type="text"
+              id="address"
+              placeholder="Enter your address"
+            />
+          </div>
+          <div class="daisy-form__group">
+            <label for="country">Country</label>
+            <select class="daisy-input" id="country">
+              <option value="">Select a country</option>
+              <option value="US">United States</option>
+              <option value="CA">Canada</option>
+              <option value="MX">Mexico</option>
+              <option value="GB">United Kingdom</option>
+            </select>
+          </div>
+        </div>
+        <div x-show="currentStep === 3">
+          <!-- Step 3 Content -->
+          <div class="daisy-form__group">
+            <label for="price">Price</label>
+            <input
+              class="daisy-input"
+              type="number"
+              id="price"
+              placeholder="Enter the price"
+            />
+          </div>
+          <div class="daisy-form__group">
+            <label for="document">Document</label>
+            <input
+              class="daisy-input"
+              type="file"
+              id="document"
+              placeholder="Upload a document"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="daisy-stepper__actions">
+        <button
+          class="daisy-button"
+          :disabled="currentStep === 1"
+          @click="currentStep--"
+        >
+          Previous
+        </button>
+        <button
+          class="daisy-button"
+          @click="currentStep < 3 ? currentStep++ : submitForm()"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function submitForm() {
+        // Get all the form data
+        const formData = document.querySelectorAll("input, select");
+        console.log(formData);
+      }
+    </script>
+  </body>
+</html>
